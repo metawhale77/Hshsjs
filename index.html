@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Meta Whale Official</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap');
+        
+        body, html {
+            margin: 0; padding: 0;
+            background-color: #000;
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Video-like Cinematic Background */
+        .viewport-wrapper {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-image {
+            width: 100%; height: 100%;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/022/653/725/non_2x/whale-tail-in-the-ocean-at-sunset-generative-ai-photo.jpg');
+            background-size: cover;
+            background-position: center 60%;
+            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+            filter: brightness(0.6) contrast(1.2);
+        }
+
+        .gradient-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 60%, #000 100%);
+        }
+
+        /* State Classes for Background */
+        body[data-state="0"] .bg-image { transform: scale(1) translateY(0); }
+        body[data-state="1"] .bg-image { transform: scale(1.1) translateY(-30px); filter: brightness(0.4) blur(2px); }
+        body[data-state="2"] .bg-image { transform: scale(1.2) translateY(-60px); filter: brightness(0.3) blur(5px); }
+
+        /* Smooth UI Fade */
+        .section-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.8s ease-in-out;
+            transform: translateY(20px);
+        }
+
+        .section-content.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        /* Glass Buttons like recording */
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-glow {
+            width: 110px; height: 110px;
+            border-radius: 35px;
+            border: 1px solid rgba(0, 191, 255, 0.4);
+            box-shadow: 0 0 30px rgba(0, 191, 255, 0.2);
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px rgba(0, 191, 255, 0.2); }
+            50% { box-shadow: 0 0 50px rgba(0, 191, 255, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(0, 191, 255, 0.2); }
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            text-align: center;
+        }
+        .scroll-line {
+            width: 1px; height: 80px;
+            background: linear-gradient(to bottom, white, transparent);
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body data-state="0">
+
+    <div class="viewport-wrapper">
+        <div class="bg-image"></div>
+        <div class="gradient-overlay"></div>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 flex justify-end items-center p-6 gap-5">
+        <span class="text-xs tracking-widest opacity-80">EN</span>
+        <button class="text-[11px] font-bold glass-btn px-6 py-2.5 rounded-full border border-white/10">Connect wallet</button>
+        <div class="w-11 h-11 glass-btn rounded-2xl flex items-center justify-center">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+        </div>
+    </nav>
+
+    <main class="relative h-screen">
+        
+        <div id="screen-0" class="section-content active">
+            <div class="scroll-hint">
+                <p class="text-[10px] tracking-[0.6em] opacity-40">SCROLL</p>
+                <div class="scroll-line"></div>
+            </div>
+        </div>
+
+        <div id="screen-1" class="section-content px-6">
+            <h1 class="text-5xl font-bold mb-6 tracking-tight">Meta Whale</h1>
+            <div class="logo-glow flex items-center justify-center mb-10 bg-sky-500/10">
+                <i data-lucide="waves" class="w-14 h-14 text-sky-400"></i>
+            </div>
+            <p class="text-center text-sm text-white/60 max-w-xs mb-10 leading-relaxed">
+                An ecosystem uniting games and virtual reality. Explore new formats of digital interaction.
+            </p>
+            <div class="flex flex-col gap-4 w-full max-w-[300px]">
+                <button class="bg-blue-600 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-xl shadow-blue-900/40">
+                    Get started <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+                <button class="glass-btn py-4 rounded-2xl font-bold">Learn more</button>
+            </div>
+        </div>
+
+        <div id="screen-2" class="section-content px-8 items-start justify-center">
+            <div class="space-y-12 w-full">
+                <div class="flex items-center gap-6">
+                    <div class="w-16 h-16 glass-btn rounded-full flex items-center justify-center">
+                        <i data-lucide="users" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold">2 260 201</h2>
+                        <p class="text-[10px] tracking-widest text-gray-500 font-bold uppercase">Participants</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="w-16 h-16 glass-btn rounded-full flex items-center justify-center">
+                        <i data-lucide="trending-up" class="w-7 h-7"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-3xl font-bold">17 813+</h2>
+                        <p class="text-[10px] tracking-widest text-gray-500 font-bold uppercase">New users per month</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="w-16 h-16 glass-btn rounded-full flex items-center justify-center">
+                        <i data-lucide="wallet" class="w-7 h-7 text-sky-400"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-[28px] font-bold text-sky-400">3 726 270 970 DAI</h2>
+                        <p class="text-[10px] tracking-widest text-gray-500 font-bold uppercase">Turnover</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        lucide.createIcons();
+        
+        let activeState = 0;
+        let isThrottled = false;
+
+        function changeState(direction) {
+            if (isThrottled) return;
+            
+            if (direction === 'down' && activeState < 2) activeState++;
+            else if (direction === 'up' && activeState > 0) activeState--;
+            else return;
+
+            isThrottled = true;
+            document.body.setAttribute('data-state', activeState);
+            
+            // Toggle Section Visibility
+            document.querySelectorAll('.section-content').forEach((el, idx) => {
+                el.classList.toggle('active', idx === activeState);
+            });
+
+            setTimeout(() => { isThrottled = false; }, 1200);
+        }
+
+        // Mouse Wheel
+        window.addEventListener('wheel', e => changeState(e.deltaY > 0 ? 'down' : 'up'));
+
+        // Touch Gestures
+        let startY = 0;
+        window.addEventListener('touchstart', e => startY = e.touches[0].clientY);
+        window.addEventListener('touchend', e => {
+            let endY = e.changedTouches[0].clientY;
+            let diff = startY - endY;
+            if (Math.abs(diff) > 50) changeState(diff > 0 ? 'down' : 'up');
+        });
+    </script>
+</body>
+  </html>
+                  
